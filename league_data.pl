@@ -72,6 +72,15 @@ is_member(X, [X|_]).
 is_member(X, [_|Tail]) :-
     is_member(X, Tail).
 
+size(0, []).
+size(X, [_|Tail]) :-
+    size(X2, Tail),
+    X is 1 + X2.
+
+append(X, [], [X]).
+append(X, [H|T], [H|Res]) :-
+    append(X, T, Res).    
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% Task 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %players_in_team(Team, Player)
 
@@ -85,6 +94,20 @@ get_players(Team, [Player | Tail], Visited) :-
     get_players(Team, Tail, [Player | Visited]).
 
 get_players(Team, [], Visited).
+
+
+%%%%%%%%%%%%%%%%%%%% Task 2 %%%%%%%%%%%%%%%%%%%%
+team_count_by_country(Country, N) :-
+    count_by_country(Country, [], List),
+    size(N, List).
+
+count_by_country(Country, Cur, Ans) :-
+    team(Name, Country, _),        
+    \+ is_member(Name, Cur),      
+    append(Name, Cur, Nxt),        
+    count_by_country(Country, Nxt, Ans). 
+
+count_by_country(_, Ans, Ans).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% Task 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %matches_of_team(Team, L).
