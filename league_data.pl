@@ -129,6 +129,14 @@ get_matches(Team, [(Opponent, Team, Score1, Score2) | Tail], Visited) :-
 
 get_matches(Team, [], Visited).
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Task 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+num_matches_of_team(Team, N):-
+   matches_of_team(Team, List),
+   size(N, List).
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% Task 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %most_common_position_in_team(Team, Pos).
 
