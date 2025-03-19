@@ -81,7 +81,7 @@ append(X, [], [X]).
 append(X, [H|T], [H|Res]) :-
     append(X, T, Res).    
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Task 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%% Task 1 %%%%%%%%%%%%%%%%%%%%
 %players_in_team(Team, Player)
 
 players_in_team(Team, Players):- 
@@ -109,7 +109,12 @@ count_by_country(Country, Cur, Ans) :-
 
 count_by_country(_, Ans, Ans).
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Task 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%% Task 3 %%%%%%%%%%%%%%%%%%%%
+most_successful_team(T) :-
+    team(T, _, N),
+    \+ (team(_, _, M), M > N).
+
+%%%%%%%%%%%%%%%%%%%% Task 4 %%%%%%%%%%%%%%%%%%%%
 %matches_of_team(Team, L).
 
 matches_of_team(Team, Matches):- 
@@ -130,14 +135,14 @@ get_matches(Team, [(Opponent, Team, Score1, Score2) | Tail], Visited) :-
 get_matches(Team, [], Visited).
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Task 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% Task 5 %%%%%%%%%%%%%%%%%%%%
 
 num_matches_of_team(Team, N):-
    matches_of_team(Team, List),
    size(N, List).
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Task 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%% Task 7 %%%%%%%%%%%%%%%%%%%%
 %most_common_position_in_team(Team, Pos).
 
 % Get Positions of the Team
