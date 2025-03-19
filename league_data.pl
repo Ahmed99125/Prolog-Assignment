@@ -175,10 +175,16 @@ most_frequent_pos(_, [], _, Common, Common).
 most_frequent_pos(Team, [Position | Tail], MaxCount, MostCommon, MostCommon) :-
     positions_in_team(Team, Positions),
     count_pos(Position, Positions, Count),
-    (Count > MaxCount ->
-        most_frequent_pos(Team, Tail, Count, Position, MostCommon)
-    ;
-        most_frequent_pos(Team, Tail, MaxCount, MostCommon, MostCommon)).
+    Count > MaxCount,
+    !,
+    most_frequent_pos(Team, Tail, Count, Position, MostCommon).
+
+most_frequent_pos(Team, [Position | Tail], MaxCount, MostCommon, MostCommon) :-
+    positions_in_team(Team, Positions),
+    count_pos(Position, Positions, Count),
+    \+ Count > MaxCount,
+    !,
+    most_frequent_pos(Team, Tail, MaxCount, MostCommon, MostCommon).
 
 
 most_common_position_in_team(Team, MostCommon) :-
