@@ -98,7 +98,8 @@ get_players(Team, [], Visited).
 %%%%%%%%%%%%%%%%%%%% Task 2 %%%%%%%%%%%%%%%%%%%%
 team_count_by_country(Country, N) :-
     count_by_country(Country, [], List),
-    size(N, List).
+    size(N, List),
+    !.
 
 count_by_country(Country, Cur, Ans) :-
     team(Name, Country, _),        
@@ -111,7 +112,8 @@ count_by_country(_, Ans, Ans).
 %%%%%%%%%%%%%%%%%%%% Task 3 %%%%%%%%%%%%%%%%%%%%
 most_successful_team(T) :-
     team(T, _, N),
-    \+ (team(_, _, M), M > N).
+    \+ (team(_, _, M), M > N),
+    !.
     
 %%%%%%%%%%%%%%%%%%%% Task 4 %%%%%%%%%%%%%%%%%%%%
 %matches_of_team(Team, L).
@@ -142,7 +144,8 @@ num_matches_of_team(Team, N):-
 %%%%%%%%%%%%%%%%%%%% Task 6 %%%%%%%%%%%%%%%%%%%%
 top_scorer(P):-
     goals(P, N),
-    \+ (goals(_, M), M > N).   
+    \+ (goals(_, M), M > N),
+    !. 
 
 %%%%%%%%%%%%%%%%%%%% Task 7 %%%%%%%%%%%%%%%%%%%%
 %most_common_position_in_team(Team, Pos).
@@ -189,4 +192,5 @@ most_frequent_pos(Team, [Position | Tail], MaxCount, MostCommon, MostCommon) :-
 
 most_common_position_in_team(Team, MostCommon) :-
     positions_in_team(Team, Positions),
-    most_frequent_pos(Team, Positions, 0, _, MostCommon).
+    most_frequent_pos(Team, Positions, 0, _, MostCommon),
+    !.
